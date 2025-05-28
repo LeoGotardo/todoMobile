@@ -1,0 +1,5 @@
+socket
+flask
+sqlalchemy
+requests
+firebase-admin
