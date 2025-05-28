@@ -3,3 +3,4 @@ flask
 sqlalchemy
 requests
 firebase-admin
+sphinx-rtd-theme
