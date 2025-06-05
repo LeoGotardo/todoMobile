@@ -7,7 +7,7 @@
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
 project = 'TodoMobile'
-copyright = '2025, Leonardo Gotardo'
+copyright = '2025, Leonardo Gotardo'    
 author = 'Leonardo Gotardo'
 
 # -- General configuration ---------------------------------------------------
