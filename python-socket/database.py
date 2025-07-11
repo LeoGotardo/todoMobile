@@ -67,17 +67,19 @@ class User(Base):
     created_at = Column(DateTime, nullable=False, default=lambda: datetime.now())
     updated_at = Column(DateTime, nullable=False, default=lambda: datetime.now())
     
-    todos = relationship("Todo", back_populates="ownerId")
+    todos = relationship("Todo", backref="owner", cascade="all, delete-orphan")
 
     def to_dict(self):
         return {
             "id": self.id,
-            "username": self.username,
-            "password": self.password,
+            "ownerId": self.ownerId,  
+            "title": self.title,
+            "description": self.description,
+            "due_date": self.due_date,
+            "done": self.done,
             "created_at": self.created_at,
-            "updated_at": self.updated_at,
-            "todos": [todo.to_dict() for todo in self.todos]
-        }
+            "updated_at": self.updated_at
+    }
         
     def safe_dict(self):
         return {
@@ -255,4 +257,19 @@ class Database:
                 return False, 'Invalid username or password'
         except Exception as e:
             error = f'{type(e).__name__}: {e} in line {sys.exc_info()[-1].tb_lineno} in file {sys.exc_info()[-1].tb_frame.f_code.co_filename}'
+            return False, error
+        
+    def toggleTodoDone(self, todoId: str):
+        try:
+            todo = self.session.query(Todo).filter(Todo.id == todoId).first()
+            if todo:
+                todo.done = 1 if todo.done == 0 else 0
+                todo.updated_at = datetime.now()
+                self.session.commit()
+                return True, todo
+            else:
+                return False, "Tarefa não encontrada"
+        except Exception as e:
+            self.session.rollback()
+            error = f'{type(e).__name__}: {e} in line {sys.exc_info()[-1].tb_lineno}'
             return False, error
