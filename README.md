@@ -83,6 +83,7 @@ DB_NAME=todo_db
 
 Execute o servidor:
 python __main__.py
+O servidor Socket estará rodando em xxx.xxx.x.x:8080
 
 Execute o servidor HTTP (opcional):
 python server.py
