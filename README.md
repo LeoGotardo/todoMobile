@@ -1,4 +1,4 @@
-odoMobile
+TodoMobile
 Um aplicativo de gerenciamento de tarefas (Todo List) completo com backend em Python e frontend em React Native.
 📱 Sobre o Projeto
 O TodoMobile é uma aplicação full-stack que permite aos usuários criar, editar, excluir e gerenciar suas tarefas diárias. O projeto consiste em:
